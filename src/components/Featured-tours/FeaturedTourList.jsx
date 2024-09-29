@@ -1,41 +1,39 @@
-// import React from 'react';
-// import TourCard from '../../shared/TourCard';
-// import { Col } from 'reactstrap';
-// import tourData from '../../assets/data'
-// import useFetch from '../../hooks/useFetch';
-// import { BASE_URL } from '../../util/config';
-
-// const FeaturedTourList = () => {
-//   // const { data: featuredTours, loading, error } = useFetch(`${BASE_URL}/tours/search/getFeaturedTour`);
-
-//   // console.log(featuredTours);
-
-//   return (
-//     <>
-//       {/* {loading && <h4>Loading.....</h4>}
-//       {error && <h4>{error}</h4>} */}
-//       {/* {!loading && !error && featuredTours && featuredTours.map((tour) => (
-//         <Col lg='3' className='mb-4' key={tour._id}>
-//           <TourCard tour={tour} />
-//         </Col>
-//          ))} */}
-
-// tourData.map((tour) => (
-//         <Col lg='3' className='mb-4' key={tour._id}>
-//           <TourCard tour={tour} />
-//         </Col>
-//       ))
-//     </>
-//   );
-// };
-
-// export default FeaturedTourList;
-
 import React from 'react';
-import TourCard from "../../shared/TourCard";
-import { Col } from "reactstrap";
-import tourData from "../../assets/data/tour";
+import TourCard from '../../shared/TourCard';
+import { Col } from 'reactstrap';
+ import tourData from '../../assets/data/tour'
+import useFetch from '../../hooks/useFetch';
+ import { BASE_URL } from '../../util/config';
 
+const FeaturedTourList = () => {
+  // const { data: featuredTours } = useFetch(`${BASE_URL}/tours/search/getFeaturedTour`);
+  const { data: featuredTours, loading, error } = useFetch(`${BASE_URL}/tours/search/getFeaturedTour`);
+
+  console.log(featuredTours);
+
+  return (
+    <>
+       {loading && <h4>Loading.....</h4>}
+       {error && <h4>{error}</h4>}
+       {!loading && !error && featuredTours &&tourData?.map(tour => (
+         <Col lg='3' className='mb-4' key={tour._id}>
+           <TourCard tour={tour} />
+         </Col>
+          ))}
+
+ {/* {featuredTours?.map(tour => (
+        <Col lg='3' className='mb-4' key={tour._id}>
+          <TourCard tour={tour} />
+         </Col>
+       ))} */}
+    </>
+  );
+};
+
+ export default FeaturedTourList;
+
+
+{/* 
 const FeaturedTourList = () => {
   // Check if the data is imported correctly
   console.log(tourData);
@@ -55,5 +53,5 @@ const FeaturedTourList = () => {
   );
 };
 
-export default FeaturedTourList;
+export default FeaturedTourList; */}
 

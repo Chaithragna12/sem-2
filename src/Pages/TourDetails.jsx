@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
-// import React, { useRef, useState, useEffect, useContext } from 'react';
+// import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 
 import '../styles/tour-details.css';
 import { Container, Row, Col, Form, ListGroup } from 'reactstrap';
 import { useParams } from 'react-router-dom';
-import tourData from '../assets/data/tour'; // Import static tour data
+// import tourData from '../assets/data/tour'; // Import static tour data
 import calculateAvgRating from '../util/avgRating';
 import Booking from '../components/Booking/Booking';
 import Newsletter from '../shared/Newsletter';
-// import useFetch from '../hooks/useFetch';
-// import { BASE_URL } from '../util/config';
+import useFetch from '../hooks/useFetch';
+import { BASE_URL } from '../util/config';
 // import { AuthContext } from '../context/AuthContext';
 
 const TourDetails = () => {
@@ -19,7 +19,7 @@ const TourDetails = () => {
   // const { user } = useContext(AuthContext);
 
   // Fetch tour details from the API
-  // const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
+  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
 
   // Fallback to static tourData if no tour data is found from API
   const tourDetails = tour || tourData.find(tour => tour.id === id);
@@ -31,7 +31,7 @@ const TourDetails = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const reviewText = reviewMsgRef.current.value;
+    const reviewText = reviewMsgRef.current.value;
 
    
 
