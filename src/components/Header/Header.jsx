@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useContext } from 'react';
+// import React, { useRef, useEffect, useContext } from 'react';
+
 import { Container, Row, Button } from 'reactstrap';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './Header.css';
-import { AuthContext } from '../../context/AuthContext';
+// import { AuthContext } from '../../context/AuthContext';
 
 const nav_link = [
   { path: '/home', display: 'Home' },
@@ -14,12 +16,12 @@ const nav_link = [
 const Header = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
-  const { user, dispatch } = useContext(AuthContext);
+  // const { user, dispatch } = useContext(AuthContext);
 
-  const logout = () => {
-    dispatch({ type: 'LOGOUT' });
-    navigate('/');
-  };
+  // const logout = () => {
+  //   dispatch({ type: 'LOGOUT' });
+  //   navigate('/');
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,7 +66,9 @@ const Header = () => {
                 {user ? (
                   <>
                     <h5 className='mb-0'>{user.username}</h5>
-                    <Button className='btn btn-dark' onClick={logout}>Logout</Button>
+                    {/* <Button className='btn btn-dark' onClick={logout}>Logout</Button> */}
+                    <Button className='btn btn-dark' >Logout</Button>
+
                   </>
                 ) : (
                   <>

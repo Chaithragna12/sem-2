@@ -1,10 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+// import React, { useState, useContext } from 'react';
+
 import '../styles/login.css';
 import { Container, Row, Col, Form, FormGroup, Button } from 'reactstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
+
 import userImg from '../assets/use.png';
-import { AuthContext } from '../context/AuthContext';
-import { BASE_URL } from '../util/config';
+// import { AuthContext } from '../context/AuthContext';
+// import { BASE_URL } from '../util/config';
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
@@ -13,8 +17,8 @@ const Register = () => {
     password: ''
   });
   
-  const { dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { dispatch } = useContext(AuthContext);
+  // const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -22,27 +26,27 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch(`${BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-      });
+    // try {
+    //   const res = await fetch(`${BASE_URL}/auth/register`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(credentials)
+    //   });
 
-      const result = await res.json();
+    //   const result = await res.json();
 
-      if (!res.ok) {
-        alert(result.message);
-        return; // Stop execution if the response is not ok
-      }
+    //   if (!res.ok) {
+    //     alert(result.message);
+    //     return; // Stop execution if the response is not ok
+    //   }
 
-      dispatch({ type: 'REGISTER_SUCCESS' });
-      navigate('/login');
-    } catch (err) {
-      alert(err.message);
-    }
+    //   dispatch({ type: 'REGISTER_SUCCESS' });
+    //   navigate('/login');
+    // } catch (err) {
+    //   alert(err.message);
+    // }
   };
 
   return (

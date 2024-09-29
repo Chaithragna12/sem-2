@@ -1,4 +1,6 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+// import React, { useRef, useState, useEffect, useContext } from 'react';
+
 import '../styles/tour-details.css';
 import { Container, Row, Col, Form, ListGroup } from 'reactstrap';
 import { useParams } from 'react-router-dom';
@@ -6,18 +8,18 @@ import tourData from '../assets/data/tour'; // Import static tour data
 import calculateAvgRating from '../util/avgRating';
 import Booking from '../components/Booking/Booking';
 import Newsletter from '../shared/Newsletter';
-import useFetch from '../hooks/useFetch';
-import { BASE_URL } from '../util/config';
-import { AuthContext } from '../context/AuthContext';
+// import useFetch from '../hooks/useFetch';
+// import { BASE_URL } from '../util/config';
+// import { AuthContext } from '../context/AuthContext';
 
 const TourDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef();
   const [tourRating, setTourRating] = useState(null);
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   // Fetch tour details from the API
-  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
+  // const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
 
   // Fallback to static tourData if no tour data is found from API
   const tourDetails = tour || tourData.find(tour => tour.id === id);
@@ -29,37 +31,37 @@ const TourDetails = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const reviewText = reviewMsgRef.current.value;
+    // const reviewText = reviewMsgRef.current.value;
 
    
 
-    try {
-      if (!user || user===undefined || user===null) {
-        alert("Please sign in");
-        return;
-      }
+    // try {
+    //   if (!user || user===undefined || user===null) {
+    //     alert("Please sign in");
+    //     return;
+    //   }
   
-      const reviewObj = {
-        username: user?.username,
-        reviewText,
-        rating: tourRating,
-      };
-      const res = await fetch(`${BASE_URL}/review/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(reviewObj),
-      });
+    //   const reviewObj = {
+    //     username: user?.username,
+    //     reviewText,
+    //     rating: tourRating,
+    //   };
+    //   const res = await fetch(`${BASE_URL}/review/${id}`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     credentials: 'include',
+    //     body: JSON.stringify(reviewObj),
+    //   });
 
-      const result = await res.json();
+    //   const result = await res.json();
 
-      if (!res.ok) alert(result.message);
-      alert(" Success message"); // Success message
-    } catch (err) {
-      alert(err.message);
-    }
+    //   if (!res.ok) alert(result.message);
+    //   alert(" Success message"); // Success message
+    // } catch (err) {
+    //   alert(err.message);
+    // }
 
     // Clear input after submission
   
@@ -76,9 +78,9 @@ const TourDetails = () => {
           <Row>
             <Col lg='8'>
               <div className="tour_content">
-                {loading && <h4 className='text-center'>Loading...</h4>}
+                {/* {loading && <h4 className='text-center'>Loading...</h4>}
                 {error && <h4 className='text-center'>{error}</h4>}
-                
+                 */}
                 {tourDetails ? (
                   <>
                     <img src={tourDetails.photo} alt={tourDetails.title} />

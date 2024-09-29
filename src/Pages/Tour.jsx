@@ -5,27 +5,27 @@ import TourCard from '../shared/TourCard';
 import SearchBar from '../shared/Searchbar';
 import Newsletter from '../shared/Newsletter';
 import { Col, Container, Row } from 'reactstrap';
-import useFetch from '../hooks/useFetch';
-import { BASE_URL } from '../util/config';
-// import tourData from '../assets/data/tour'; // Importing local tour data
+// import useFetch from '../hooks/useFetch';
+// import { BASE_URL } from '../util/config';
+ import tourData from '../assets/data/tour'; // Importing local tour data
 
 const Tour = () => {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
-  const { data: tours, loading, error } = useFetch(`${BASE_URL}/tours?page=${page}`);
-  const { data: tourCount } = useFetch(`${BASE_URL}/tours/search/getTourCount`);
+  // const { data: tours, loading, error } = useFetch(`${BASE_URL}/tours?page=${page}`);
+  // const { data: tourCount } = useFetch(`${BASE_URL}/tours/search/getTourCount`);
 
   // Use local tour data if there's an error or if tours are not fetched
-  const displayedTours = tours || tourData;
+  // const displayedTours = tours || tourData;
 
   useEffect(() => {
-    if (tourCount) {
-      const pages = Math.ceil(tourCount / 8);
-      window.scrollTo(0,0)
+    // if (tourCount) {
+      const pages = Math.ceil(4 / 8);
+      // window.scrollTo(0,0)
 
       setPageCount(pages);
-    }
-  }, [page,tourCount,tours]);
+    // }
+  }, [page]);
 
   return (
     <>
@@ -39,11 +39,11 @@ const Tour = () => {
       </section>
       <section className='pt-0'>
         <Container>
-          {loading && <h4 className='text-center pt-5'>Loading..</h4>}
+          {/* {loading && <h4 className='text-center pt-5'>Loading..</h4>}
           {error && <h4 className='text-center pt-5'>{error}.</h4>}
-          {!loading && !error && (
+          {!loading && !error && ( */}
             <Row>
-              {displayedTours?.map(tour => (
+              {tourData?.map(tour => (
                 <Col lg='3' className='mb-4' key={tour._id}>
                   <TourCard tour={tour} />
                 </Col>
@@ -62,7 +62,7 @@ const Tour = () => {
                 </div>
               </Col>
             </Row>
-          )}
+          {/* )} */}
         </Container>
       </section>
       <Newsletter />
